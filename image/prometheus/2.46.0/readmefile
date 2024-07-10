@@ -1,0 +1,26 @@
+##Ensure that your directory structure looks like this:
+.
+└── Dockerfile
+
+Building the Docker Image
+To build the Docker image, run the following command in your terminal:
+
+docker build -t my-prometheus .
+
+This command creates a Docker image named my-prometheus based on the Dockerfile in the current directory.
+
+Running the Docker Container
+To start the Docker container, use the following command:
+
+sudo docker container run -i -t --rm -v /home/vagrant/opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/etc/supervisord.conf -p 9090:9090 --entrypoint /usr/bin/supervisord my-prometheus -c /etc/supervisord.conf
+
+Explanation
+-i -t: Runs the container in interactive mode with a terminal.
+--rm: Automatically removes the container when it exits.
+-v /home/vagrant/opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/etc/supervisord.conf: Mounts the supervisor.ini configuration file from your host into the container.
+-p 9090:9090: Maps port 9090 on your host to port 9090 in the container.
+--entrypoint /usr/bin/supervisord: Sets supervisord as the entry point for the container.
+my-prometheus: Specifies the Docker image to use.
+-c /etc/supervisord.conf: Uses the supervisord.conf configuration file for supervisord.
+Accessing Prometheus
+After starting the container, you can access the Prometheus web interface at http://localhost:9090.
