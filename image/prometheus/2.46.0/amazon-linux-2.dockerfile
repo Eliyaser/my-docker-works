@@ -5,7 +5,7 @@ FROM sloopstash/base:v1.1.1
 ENV PROMETHEUS_VERSION=2.46.0
 
 # Install system packages.
-RUN yum install -y tcl supervisor
+RUN yum install -y tcl
 
 # Download and extract Prometheus.
 WORKDIR /tmp
