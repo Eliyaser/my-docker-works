@@ -16,11 +16,12 @@ RUN set -x \
 # Move Prometheus binaries to a directory in PATH.
 WORKDIR prometheus-${PROMETHEUS_VERSION}.linux-amd64
 RUN set -x \
+  && mkdir /opt/prometheus \
   && mv prometheus /usr/local/bin/ \
   && mv promtool /usr/local/bin/ \
-  && mv consoles /etc/prometheus/ \
-  && mv console_libraries /etc/prometheus/ \
-  && mv prometheus.yml /etc/prometheus/
+  && mv consoles /opt/prometheus/ \
+  && mv console_libraries /opt/prometheus/ \
+  && mv prometheus.yml /opt/prometheus/
   && mkdir /opt/prometheus/system \
   && touch /opt/prometheus/system/server.pid \
   && touch /opt/prometheus/system/supervisor.ini \
