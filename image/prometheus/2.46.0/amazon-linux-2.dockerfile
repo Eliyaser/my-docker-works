@@ -21,6 +21,11 @@ RUN set -x \
   && mv consoles /etc/prometheus/ \
   && mv console_libraries /etc/prometheus/ \
   && mv prometheus.yml /etc/prometheus/
+  && mkdir /opt/prometheus/system \
+  && touch /opt/prometheus/system/server.pid \
+  && touch /opt/prometheus/system/supervisor.ini \
+  && ln -s /opt/prometheus/system/supervisor.ini /etc/supervisord.d/prometheus.ini \
+  && history -c
 
 # Create a directory for Prometheus data
 RUN mkdir -p /var/lib/prometheus
@@ -34,6 +39,3 @@ EXPOSE 9090
 
 # Set the entrypoint to supervisord
 ENTRYPOINT ["/usr/bin/supervisord"]
-
-
-
