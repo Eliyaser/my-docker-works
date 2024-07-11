@@ -2,10 +2,9 @@
 .
 └── Dockerfile
 
-Building the Docker Image
-To build the Docker image, run the following command in your terminal:
-
-docker build -t my-prometheus .
+##Building the Docker Image
+cd /opt
+sudo docker image build -t my-prometheus-image:v2.46.0 -f docker/image/prometheus/2.46.0/amazon-linux-2.dockerfile docker/image/prometheus/2.46.0/context
 
 This command creates a Docker image named my-prometheus based on the Dockerfile in the current directory.
 
