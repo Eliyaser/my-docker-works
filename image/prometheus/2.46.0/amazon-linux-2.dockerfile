@@ -21,7 +21,7 @@ RUN set -x \
   && mv promtool /usr/local/bin/ \
   && mv consoles /opt/prometheus/ \
   && mv console_libraries /opt/prometheus/ \
-  && mv prometheus.yml /opt/prometheus/
+  && mv prometheus.yml /opt/prometheus/ \
   && mkdir /opt/prometheus/system \
   && touch /opt/prometheus/system/server.pid \
   && touch /opt/prometheus/system/supervisor.ini \
