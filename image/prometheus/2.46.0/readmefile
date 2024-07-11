@@ -1,7 +1,6 @@
 Prometheus image build
 -----------------------
 cd /opt
-sudo git clone current repo
 sudo docker image build -t my-prometheus-image:v2.46.0 -f docker/image/prometheus/2.46.0/amazon-linux-2.dockerfile docker/image/prometheus/2.46.0/context
 
 
@@ -9,9 +8,17 @@ run container command
 ---------------------
  
 sudo docker container run -i -t --rm \
--v /opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/etc/supervisord.conf \
+-v /opt/docker/workload/supervisor/conf/server.conf:/etc/supervisord.conf \
 -v /opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/opt/prometheus/system/supervisor.ini \
 -p 9090:9090 \
 --entrypoint /usr/bin/supervisord \
 my-prometheus-image:v2.46.0 \
 -c /etc/supervisord.conf
+
+sudo docker container exec -ti (CONT_NAME) /bin/bash
+ps -ef
+
+
+supervisorctl status
+supervisorctl start prometheus
+supervisorctl stop prometheus
