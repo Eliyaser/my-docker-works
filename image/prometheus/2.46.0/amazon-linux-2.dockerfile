@@ -35,8 +35,5 @@ RUN mkdir -p /var/lib/prometheus
 WORKDIR /
 RUN rm -rf /tmp/prometheus-${PROMETHEUS_VERSION}.linux-amd64*
 
-# Expose Prometheus port
-EXPOSE 9090
-
-# Set the entrypoint to supervisord
-ENTRYPOINT ["/usr/bin/supervisord"]
+# Set default work directory.
+WORKDIR /opt/prometheus
