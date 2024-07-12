@@ -12,6 +12,7 @@ cd /opt
 sudo git clone https://github.com/Eliyaser/docker.git
 sudo chown -R $USER:$USER /opt/prometheus-docker-setup 
 sudo docker image build -t my-prometheus-image:v2.46.0 -f docker/image/prometheus/2.46.0/amazon-linux-2.dockerfile docker/image/prometheus/2.46.0/context
+ ```
 
 ## Run Container Command
 
@@ -25,7 +26,7 @@ sudo docker container run -i -t --rm \
 --entrypoint /usr/bin/supervisord \
 my-prometheus-image:v2.46.0 \
 -c /etc/supervisord.conf
-
+ ```
 ## Second Terminal
 
 To access the running container and check the status of Prometheus, use the following commands:
@@ -36,6 +37,7 @@ ps -ef
 supervisorctl status
 supervisorctl start prometheus
 supervisorctl stop Prometheus
+ ```
 
 ##Verify that Prometheus is running by opening your browser and navigating to:
 http://192.168.101.5:9090
@@ -85,3 +87,5 @@ RUN rm -rf /tmp/prometheus-${PROMETHEUS_VERSION}.linux-amd64*
 
 # Set default work directory.
 WORKDIR /opt/Prometheus
+
+ ```
