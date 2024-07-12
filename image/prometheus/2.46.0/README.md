@@ -32,7 +32,7 @@ my-prometheus-image:v2.46.0 \
 To access the running container and check the status of Prometheus, use the following commands:
 
 ```sh
-sudo docker container exec -ti (CONT_NAME) /bin/bash
+sudo docker container exec -ti YOUR_Container_NAME /bin/bash
 ps -ef
 supervisorctl status
 supervisorctl start prometheus
