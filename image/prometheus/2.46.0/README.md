@@ -9,7 +9,7 @@ To build the Prometheus Docker image, follow these steps:
 
 ```sh
 cd /opt
-sudo git clone https://github.com/Eliyaser/docker.git
+sudo git clone https://github.com/Eliyaser/my-docker-works.git
 sudo chown -R $USER:$USER /opt/prometheus-docker-setup 
 sudo docker image build -t my-prometheus-image:v2.46.0 -f docker/image/prometheus/2.46.0/amazon-linux-2.dockerfile docker/image/prometheus/2.46.0/context
  ```
@@ -22,6 +22,7 @@ To start the Prometheus container, use the following command:
 sudo docker container run -i -t --rm \
 -v /opt/docker/workload/supervisor/conf/server.conf:/etc/supervisord.conf \
 -v /opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/opt/prometheus/system/supervisor.ini \
+-v /opt/docker/workload/prometheus/2.46.0/conf/server.conf:/opt/prometheus/prometheus.yml \
 -p 9090:9090 \
 --entrypoint /usr/bin/supervisord \
 my-prometheus-image:v2.46.0 \
