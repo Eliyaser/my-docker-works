@@ -19,6 +19,7 @@ sudo docker image build -t my-prometheus-image:v2.53.1 -f docker/image/prometheu
 To start the Prometheus container, use the following command:
 
 ```sh
+sudo docker network create -d bridge --subnet=15.1.0.0/16  sloopstash-dev-prometheus
 sudo docker container run -i -t --rm \
 -v /opt/docker/workload/supervisor/conf/server.conf:/etc/supervisord.conf \
 -v /opt/docker/workload/prometheus/2.46.0/conf/supervisor.ini:/opt/prometheus/system/supervisor.ini \
