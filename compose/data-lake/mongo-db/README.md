@@ -5,16 +5,15 @@
     cd /opt/my-docker-works
     ```
 
-##to start the data lake mango-db project
-*****************************************
+#to start the data lake mango-db project
+
   ```sh
 sudo docker compose -f compose/data-lake/mongo-db/main.yml --env-file compose/data-lake/mongo-db/Dev.env -p mangodb-cluster up -d
+ ```
 
-    ```
 
+#Initiate the Replica Set
 
-##Initiate the Replica Set
-*************************
 ```
 docker exec -it mongo1 mongosh --eval "rs.initiate({
  _id: \"myReplicaSet\",
