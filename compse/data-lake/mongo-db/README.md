@@ -1,6 +1,7 @@
 #1. Clone the repository:
 
     ```sh
+    cd /opt
     sudo git clone https://github.com/Eliyaser/my-docker-works.git
     sudo chown -R $USER:$USER /opt/my-docker-works
     cd /opt/my-docker-works
