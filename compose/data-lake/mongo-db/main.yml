@@ -43,7 +43,7 @@ services:
         ipv4_address: 14.1.2.12
 
 networks:
-  mongo-cluster:
+  common:
     driver: bridge
 
 volumes:
