@@ -7,8 +7,10 @@
 
 ##to start the data lake mango-db project
 *****************************************
+  ```sh
+sudo docker compose -f compose/data-lake/mongo-db/main.yml --env-file compose/data-lake/mongo-db/Dev.env -p mangodb-cluster up -d
 
-sudo docker compose -f compose/data-lake/mango-db/main.yml
+    ```
 
 
 ##Initiate the Replica Set
