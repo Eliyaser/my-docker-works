@@ -4,10 +4,6 @@ services:
     image: sloopstash/mongo-db:v4.4.4
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
-    environment:
-      - HOME_DIR=/opt/kickstart-docker
-      - MONGO_DB_VERSION=4.4.4
-      - MONGO_DB_IP=14.1.2.10
     volumes:
           - mongo-db-1-data:/opt/mongo-db/data
           - mongo-db-1-log:/opt/mongo-db/log
@@ -16,16 +12,12 @@ services:
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
     networks:
       common:
-        ipv4_address: ${MONGO_DB_IP}
+        ipv4_address: 14.1.2.10
 
   mongo2:
     image: sloopstash/mongo-db:v4.4.4
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
-    environment:
-      - HOME_DIR=/opt/kickstart-docker
-      - MONGO_DB_VERSION=4.4.4
-      - MONGO_DB_IP=14.1.2.11
     volumes:
           - mongo-db-2-data:/opt/mongo-db/data
           - mongo-db-2-log:/opt/mongo-db/log
@@ -34,16 +26,12 @@ services:
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
     networks:
       common:
-        ipv4_address: ${MONGO_DB_IP}
+        ipv4_address: 14.1.2.11
 
   mongo3:
     image: sloopstash/mongo-db:v4.4.4
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
-    environment:
-      - HOME_DIR=/opt/kickstart-docker
-      - MONGO_DB_VERSION=4.4.4
-      - MONGO_DB_IP=14.1.2.12
     volumes:
           - mongo-db-3-data:/opt/mongo-db/data
           - mongo-db-3-log:/opt/mongo-db/log
@@ -52,7 +40,7 @@ services:
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
     networks:
       common:
-        ipv4_address: ${MONGO_DB_IP}
+        ipv4_address: 14.1.2.12
 
 networks:
   mongo-cluster:
