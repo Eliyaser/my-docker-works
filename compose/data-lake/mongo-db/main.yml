@@ -11,8 +11,7 @@ services:
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
     networks:
-      common:
-        ipv4_address: 14.1.2.10
+      - common
 
   mongo2:
     image: sloopstash/mongo-db:v4.4.4
@@ -24,9 +23,10 @@ services:
           - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
+    depends_on:
+      - mongo1
     networks:
-      common:
-        ipv4_address: 14.1.2.11
+      - common
 
   mongo3:
     image: sloopstash/mongo-db:v4.4.4
@@ -38,13 +38,11 @@ services:
           - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
+    depends_on:
+      - mongo2
     networks:
-      common:
-        ipv4_address: 14.1.2.12
+      - common
 
-networks:
-  common:
-    driver: bridge
 
 volumes:
   mongo-db-1-data:
@@ -59,3 +57,11 @@ volumes:
     driver: local
   mongo-db-3-log:
     driver: local
+
+networks:
+  common:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MONGO_DB_NETWORK}
