@@ -1,0 +1,73 @@
+version: '3.8'
+services:
+  mongo1:
+    image: sloopstash/mongo-db:v4.4.4
+    entrypoint: /usr/bin/supervisord
+    command: "-c /etc/supervisord.conf"
+    environment:
+      - HOME_DIR=/opt/kickstart-docker
+      - MONGO_DB_VERSION=4.4.4
+      - MONGO_DB_IP=14.1.2.10
+    volumes:
+          - mongo-db-1-data:/opt/mongo-db/data
+          - mongo-db-1-log:/opt/mongo-db/log
+          - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
+    networks:
+      common:
+        ipv4_address: ${MONGO_DB_IP}
+
+  mongo2:
+    image: sloopstash/mongo-db:v4.4.4
+    entrypoint: /usr/bin/supervisord
+    command: "-c /etc/supervisord.conf"
+    environment:
+      - HOME_DIR=/opt/kickstart-docker
+      - MONGO_DB_VERSION=4.4.4
+      - MONGO_DB_IP=14.1.2.11
+    volumes:
+          - mongo-db-2-data:/opt/mongo-db/data
+          - mongo-db-2-log:/opt/mongo-db/log
+          - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
+    networks:
+      common:
+        ipv4_address: ${MONGO_DB_IP}
+
+  mongo3:
+    image: sloopstash/mongo-db:v4.4.4
+    entrypoint: /usr/bin/supervisord
+    command: "-c /etc/supervisord.conf"
+    environment:
+      - HOME_DIR=/opt/kickstart-docker
+      - MONGO_DB_VERSION=4.4.4
+      - MONGO_DB_IP=14.1.2.12
+    volumes:
+          - mongo-db-3-data:/opt/mongo-db/data
+          - mongo-db-3-log:/opt/mongo-db/log
+          - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
+          - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
+    networks:
+      common:
+        ipv4_address: ${MONGO_DB_IP}
+
+networks:
+  mongo-cluster:
+    driver: bridge
+
+volumes:
+  mongo-db-1-data:
+    driver: local
+  mongo-db-1-log:
+    driver: local
+  mongo-db-2-data:
+    driver: local
+  mongo-db-2-log:
+    driver: local
+  mongo-db-3-data:
+    driver: local
+  mongo-db-3-log:
+    driver: local
