@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   mongo1:
-    image: sloopstash/mongo-db:v4.4.4
+    image: sloopstash/mongo-db:v7.0.2
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
@@ -14,7 +14,7 @@ services:
       - common
 
   mongo2:
-    image: sloopstash/mongo-db:v4.4.4
+    image: sloopstash/mongo-db:v7.0.2
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
@@ -29,7 +29,7 @@ services:
       - common
 
   mongo3:
-    image: sloopstash/mongo-db:v4.4.4
+    image: sloopstash/mongo-db:v7.0.2
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
