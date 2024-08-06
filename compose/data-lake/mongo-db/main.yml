@@ -2,6 +2,7 @@ version: '3.8'
 services:
   mongo1:
     image: sloopstash/mongo-db:v7.0.2
+    container_name: mongo1
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
@@ -10,11 +11,12 @@ services:
           - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
-    networks:
-      - common
+    ports:
+      - 27017:27017
 
   mongo2:
     image: sloopstash/mongo-db:v7.0.2
+    container_name: mongo2
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
@@ -23,13 +25,12 @@ services:
           - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
-    depends_on:
-      - mongo1
-    networks:
-      - common
+    ports:
+      - 27018:27017
 
   mongo3:
     image: sloopstash/mongo-db:v7.0.2
+    container_name: mongo3
     entrypoint: /usr/bin/supervisord
     command: "-c /etc/supervisord.conf"
     volumes:
@@ -38,10 +39,8 @@ services:
           - ${HOME_DIR}/workload/supervisor/conf/server.conf:/etc/supervisord.conf
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/supervisor.ini:/opt/mongo-db/system/supervisor.ini
           - ${HOME_DIR}/workload/mongo-db/${MONGO_DB_VERSION}/conf/server.conf:/opt/mongo-db/conf/server.conf
-    depends_on:
-      - mongo2
-    networks:
-      - common
+    ports:
+      - 27019:27017
 
 
 volumes:
@@ -58,10 +57,3 @@ volumes:
   mongo-db-3-log:
     driver: local
 
-networks:
-  common:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: ${MONGO_DB_NETWORK}
