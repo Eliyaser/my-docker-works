@@ -57,3 +57,11 @@ volumes:
   mongo-db-3-log:
     driver: local
 
+networks:
+  common:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: ${MONGO_DB_NETWORK}
+
