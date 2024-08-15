@@ -4,7 +4,7 @@ services:
     image: nginx: latest
     container_name: website
     volumes :
-      - /opt/website/html:/usr/share/nginx/html
+      - /opt/website:/usr/share/nginx/html
     ports :
       - 80:80
     restart: always
