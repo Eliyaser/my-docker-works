@@ -1,0 +1,10 @@
+version: 3'
+services:
+  website:
+    image: nginx: latest
+    container_name: website
+    volumes :
+      - /opt/website/html:/usr/share/nginx/html
+    ports :
+      - 80:80
+    restart: always
