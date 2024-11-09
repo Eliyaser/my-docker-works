@@ -1,5 +1,5 @@
 # Docker image to use.
-FROM sloopstash/base:v1.1.1
+FROM eliyaser/base:v1.1.1
 
 # Set the Prometheus version
 ENV PROMETHEUS_VERSION=2.46.0
