@@ -10,7 +10,7 @@ To build the Prometheus Docker image, follow these steps:
 ```sh
 cd /opt
 sudo git clone https://github.com/Eliyaser/my-docker-works.git
-sudo chown -R $USER:$USER /opt/prometheus-docker-setup 
+sudo chown -R $USER:$USER /opt/my-docker-works
 sudo docker image build -t my-prometheus-image:v2.46.0 -f my-docker-works/image/prometheus/2.46.0/amazon-linux-2.dockerfile my-docker-works/image/prometheus/2.46.0/context
  ```
 
