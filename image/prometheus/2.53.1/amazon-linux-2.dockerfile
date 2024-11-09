@@ -1,5 +1,5 @@
 #Docker image to use
-From sloopstash/base:v1.1.1
+From eliyaser/base:v1.1.1
 
 #Download and extract Prometheus
 WORKDIR /tmp
