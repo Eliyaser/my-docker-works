@@ -24,7 +24,7 @@ sudo docker container run -i -t --rm \
 -v /opt/my-docker-works/workload/prometheus/2.46.0/conf/supervisor.ini:/opt/prometheus/system/supervisor.ini \
 -v /opt/my-docker-works/workload/prometheus/2.46.0/conf/server.conf:/opt/prometheus/prometheus.yml \
 -p 9090:9090 \
---entrypoint /usr/bin/supervisord \
+--entrypoint /usr/local/bin/supervisord \
 my-prometheus-image:v2.46.0 \
 -c /etc/supervisord.conf
  ```
